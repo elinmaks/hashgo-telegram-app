@@ -1,0 +1,25 @@
+FROM node:20-alpine
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Копируем package.json и package-lock.json
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm install
+
+# Копируем исходный код
+COPY . .
+
+# Собираем клиентскую часть
+RUN npm run build:client
+
+# Устанавливаем serve для статики
+RUN npm install -g serve
+
+# Открываем порт
+EXPOSE 5173
+
+# Команда запуска
+CMD ["serve", "-s", "dist/client", "-l", "5173"] 

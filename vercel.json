@@ -1,0 +1,32 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "src/server.ts",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "src/client/dist/**",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "src/server.ts"
+        },
+        {
+            "src": "/",
+            "dest": "src/client/dist/index.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "src/client/dist/index.html"
+        }
+    ],
+    "env": {
+        "TELEGRAM_TOKEN": "@telegram_token",
+        "MONGODB_URI": "@mongodb_uri",
+        "WEB_APP_URL": "@web_app_url"
+    }
+} 

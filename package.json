@@ -1,0 +1,48 @@
+{
+  "name": "hashgo-telegram-app",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/server.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev:server": "node --loader ts-node/esm src/server.ts",
+    "dev:client": "vite",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build:server": "tsc",
+    "build:client": "vite build",
+    "build": "npm run build:server && npm run build:client",
+    "vercel-build": "npm run build:client && npm run build:server"
+  },
+  "keywords": ["telegram", "mining", "web-app"],
+  "author": "HashGo Team",
+  "license": "ISC",
+  "description": "Telegram Mining Web Application",
+  "dependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node-telegram-bot-api": "^0.64.7",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "mongoose": "^8.9.3",
+    "node-telegram-bot-api": "^0.66.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.25",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.5"
+  }
+}
