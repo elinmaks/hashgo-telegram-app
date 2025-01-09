@@ -11,8 +11,14 @@ dotenv.config();
 
 const app = express();
 const port: number = Number(process.env.PORT) || 3001;
-const TELEGRAM_TOKEN = '7743022174:AAEuGiz_FWhrdeJj8EMxMe0aYSTNAQKq94o';
+const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN || '';
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/hashgo';
+
+// Проверка токена
+if (!TELEGRAM_TOKEN) {
+  console.error('CRITICAL: Telegram Bot Token is not set!');
+  process.exit(1);
+}
 
 // Подключение к MongoDB
 mongoose.connect(MONGODB_URI)
@@ -103,6 +109,15 @@ app.get('/api/hashgo-data', async (req: Request, res: Response) => {
   } catch (error) {
     res.status(400).json({ error: 'Failed to get mining stats' });
   }
+});
+
+// Здоровье приложения
+app.get('/api/health', (req: Request, res: Response) => {
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
 });
 
 app.listen(port, () => {

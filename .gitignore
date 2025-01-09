@@ -19,6 +19,12 @@ out/
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# Операционные системы
+.DS_Store
+Thumbs.db
 
 # Vercel
 .vercel
@@ -33,6 +39,5 @@ yarn-error.log*
 # Кэш
 .cache/
 
-# Операционные системы
-.DS_Store
-Thumbs.db 
+# TypeScript
+*.tsbuildinfo 
